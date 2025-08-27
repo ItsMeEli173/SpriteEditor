@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  color: white;
+  padding: 1rem 2rem;
+}
+.header .logo img {
+  width: 40px;
+  height: 40px;
+}
+.nav a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1rem;
+  background: #1f2937;
+  color: white;
+}
+
+/* Home */
+.home {
+  padding: 2rem;
+}
+.carousel {
+  overflow: hidden;
+  margin: 1rem auto;
+  width: 80%;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}
+.carousel-track {
+  display: flex;
+  animation: slide 15s infinite linear;
+}
+.carousel-track img {
+  width: 100%;
+  object-fit: cover;
+}
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+.sprite-size .size-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.sprite-size button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+}
+.sprite-size button:hover {
+  background: #2563eb;
+}
+
+/* Editor */
+.editor {
+  padding: 2rem;
+}
+.canvas {
+  border: 2px solid #111827;
+  margin-bottom: 1rem;
+  display: block;
+}
+.palettes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+.palette {
+  background: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.colors {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+.color-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
