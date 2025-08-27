@@ -328,13 +328,14 @@ function Editor({ spriteSize=16 }) {
           border: '3px solid #3949ab',
           borderRadius: '16px',
           boxShadow: '0 2px 12px rgba(26,35,126,0.10)',
-          width: 'min(100%, 600px)',
-          height: 'min(100vw, 600px)',
+          width: '100%',
+          maxWidth: '600px',
           aspectRatio: '1/1',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          margin: '0 auto'
+          margin: '0 auto',
+          minHeight: '220px'
         }}>
           <canvas
             ref={canvasRef}
@@ -342,7 +343,7 @@ function Editor({ spriteSize=16 }) {
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
-            style={{background: 'none', display: 'block', margin: '0 auto', width: '100%', height: '100%', aspectRatio: '1/1'}}
+            style={{background: 'none', display: 'block', margin: '0 auto', width: '100%', height: '100%', aspectRatio: '1/1', maxWidth: '600px', maxHeight: '600px'}}
           />
         </div>
 
