@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Editor from "./pages/Editor";
 import Header from "./components/Header";
@@ -13,17 +14,19 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <Header />
-      <main className="main-content">
-        {!spriteSize ? (
-          <Home onSizeSelected={handleSizeSelected} />
-        ) : (
-          <Editor spriteSize={spriteSize} />
-        )}
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter basename="/SpriteEditor">
+      <div className="app-container">
+        <Header />
+        <main className="main-content">
+          {!spriteSize ? (
+            <Home onSizeSelected={handleSizeSelected} />
+          ) : (
+            <Editor spriteSize={spriteSize} />
+          )}
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

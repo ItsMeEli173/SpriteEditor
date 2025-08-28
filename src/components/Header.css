@@ -1,0 +1,73 @@
+.logo-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid #3949ab;
+}
+.inicio-link {
+  max-width: 100%;
+  font-size: 1em;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    padding: 0.5rem 0.8rem;
+    text-align: center;
+  }
+  .logo-group {
+    gap: 10px;
+  }
+  .logo-img {
+    width: 28px;
+    height: auto;
+    border-radius: 8px;
+    border-width: 1.5px;
+  }
+  .inicio-link {
+    font-size: 0.98em;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+  h1 {
+    font-size: 1.2em;
+    margin-top: 8px;
+  }
+}
+/* Header styles for Sprite Editor */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  color: white;
+  padding: 1rem 2rem;
+}
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 2px solid #3949ab;
+}
+.inicio-link {
+  color: #3949ab;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #e3eafc;
+  border: 1px solid #3949ab;
+  transition: background 0.2s, color 0.2s;
+}
+.inicio-link:hover {
+  background: #c5cae9;
+  color: #1a237e;
+}
