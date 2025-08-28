@@ -313,14 +313,40 @@ function Editor({ spriteSize=16 }) {
           <input type="text" value={spriteName} onChange={e=>setSpriteName(e.target.value)} />
         </div>
 
-        <div className="toolbar">
-          {["pencil","eraser","eyedropper","fill","clearFill"].map(t=>(
-            <button key={t} className={tool===t?"active":""} onClick={()=>setTool(t)}>
-              {t==="pencil"?"🖌️":t==="eraser"?"🧽":t==="eyedropper"?"🎨":t==="fill"?"🪣":"🗑️"} {toolNames[t]}
-            </button>
-          ))}
-          <button onClick={undo}>↩️ Deshacer</button>
-          <input type="color" value={currentColor} onChange={e=>setCurrentColor(e.target.value)} />
+        <div className="toolbar-grouped" style={{display: 'flex', gap: '32px', alignItems: 'flex-start', marginBottom: '18px'}}>
+          {/* Selector de color */}
+          <div className="color-selector-highlight">
+            <label style={{fontWeight: 'bold', color: '#1c2044ff', fontSize: '1.08em', marginBottom: '8px', display: 'block'}}>Seleccionar Color</label>
+            <input
+              type="color"
+              value={currentColor}
+              onChange={e=>setCurrentColor(e.target.value)}
+              style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '12px',
+                border: '3px solid #3949ab',
+                boxShadow: '0 2px 8px rgba(26,35,126,0.10)',
+                cursor: 'pointer',
+                background: '#fff',
+                display: 'block'
+              }}
+            />
+          </div>
+
+          {/* Botones principales agrupados */}
+          <div className="main-tools-group" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px'}}>
+            <button className={tool==="pencil"?"active":""} onClick={()=>setTool("pencil")}>🖌️ Lápiz</button>
+            <button className={tool==="eraser"?"active":""} onClick={()=>setTool("eraser")}>🧽 Borrador</button>
+            <button className={tool==="fill"?"active":""} onClick={()=>setTool("fill")}>🪣 Rellenar</button>
+            <button className={tool==="eyedropper"?"active":""} onClick={()=>setTool("eyedropper")}>🎨 Copiar color</button>
+          </div>
+
+          {/* Botones secundarios separados */}
+          <div className="secondary-tools-group" style={{display: 'flex', flexDirection: 'column', gap: '8px', marginLeft: '24px'}}>
+            <button onClick={()=>setTool("clearFill")}>🗑️ Limpiar</button>
+            <button onClick={undo}>↩️ Deshacer</button>
+          </div>
         </div>
 
         <div className="canvas-backdrop" style={{
@@ -367,7 +393,29 @@ function Editor({ spriteSize=16 }) {
             <div className="palette" key={key}>
               <div className="palette-header">
                 <h4 style={{color: '#1c2044ff'}}>{paletteNames[key]}</h4>
-                <button className="palette-pin" onClick={()=>togglePaletteFixed(key)}>📌</button>
+                <button
+                  className={`palette-pin${fixedPalettes.includes(key) ? ' active' : ''}`}
+                  onClick={()=>togglePaletteFixed(key)}
+                  style={{
+                    background: fixedPalettes.includes(key) ? '#3949ab' : 'none',
+                    color: fixedPalettes.includes(key) ? '#fff' : '#3949ab',
+                    border: fixedPalettes.includes(key) ? '2px solid #3949ab' : '2px solid #e3eafc',
+                    borderRadius: '6px',
+                    fontWeight: 'bold',
+                    fontSize: '1.1em',
+                    boxShadow: fixedPalettes.includes(key) ? '0 2px 8px #3949ab55' : 'none',
+                    transition: 'all 0.2s',
+                    cursor: 'pointer',
+                    padding: '2px 6px',
+                    minWidth: '28px',
+                    minHeight: '28px',
+                    lineHeight: '1',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  title={fixedPalettes.includes(key) ? 'Paleta fijada' : 'Fijar paleta'}
+                >📌</button>
               </div>
               <div className="colors">
                 {colors.map(color=>(

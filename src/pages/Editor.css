@@ -1,3 +1,59 @@
+/* Agrupación y alineación de herramientas en el editor */
+.toolbar-grouped {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+.color-selector-highlight {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #e3eafc;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(26,35,126,0.08);
+  min-width: 160px;
+  height: 100px;
+  justify-content: center;
+}
+.main-tools-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 105px;
+}
+.main-tools-group button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1em;
+}
+.main-tools-group button.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.secondary-tools-group {
+  padding: 10px, 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 5px;
+  height: 105px;
+  justify-content: center;
+}
+.secondary-tools-group button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.02);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1em;
+}
 /* Variables */
 :root {
   --bg: #0f172a;
