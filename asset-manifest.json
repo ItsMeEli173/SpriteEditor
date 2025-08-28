@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/SpriteEditor/static/css/main.55430b9f.css",
-    "main.js": "/SpriteEditor/static/js/main.cb8d4f6d.js",
+    "main.css": "/SpriteEditor/static/css/main.f8d6146d.css",
+    "main.js": "/SpriteEditor/static/js/main.8e6a757d.js",
     "static/js/453.e41df518.chunk.js": "/SpriteEditor/static/js/453.e41df518.chunk.js",
     "static/media/sprite3.png": "/SpriteEditor/static/media/sprite3.47825e8f5b00953fc22b.png",
     "static/media/sprite4.png": "/SpriteEditor/static/media/sprite4.80702a8292b5359fd190.png",
@@ -9,12 +9,12 @@
     "static/media/sprite2.png": "/SpriteEditor/static/media/sprite2.6d068490a6e852a2d81c.png",
     "static/media/logo.png": "/SpriteEditor/static/media/logo.eaca370fb2de26cd261c.png",
     "index.html": "/SpriteEditor/index.html",
-    "main.55430b9f.css.map": "/SpriteEditor/static/css/main.55430b9f.css.map",
-    "main.cb8d4f6d.js.map": "/SpriteEditor/static/js/main.cb8d4f6d.js.map",
+    "main.f8d6146d.css.map": "/SpriteEditor/static/css/main.f8d6146d.css.map",
+    "main.8e6a757d.js.map": "/SpriteEditor/static/js/main.8e6a757d.js.map",
     "453.e41df518.chunk.js.map": "/SpriteEditor/static/js/453.e41df518.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.55430b9f.css",
-    "static/js/main.cb8d4f6d.js"
+    "static/css/main.f8d6146d.css",
+    "static/js/main.8e6a757d.js"
   ]
 }
