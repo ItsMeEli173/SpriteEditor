@@ -68,6 +68,8 @@
 
 /* Container */
 .editor-container {
+  box-sizing: border-box;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr var(--sidebar-width);
   gap: 20px;
@@ -77,6 +79,49 @@
   color: var(--white);
   font-family: Inter, sans-serif;
 }
+
+@media (max-width: 900px) {
+  .editor-container {
+    grid-template-columns: 1fr;
+    padding: 8px;
+    gap: 12px;
+  }
+  .canvas-section {
+  box-sizing: border-box;
+  width: 100%;
+    max-width: 100vw;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  .sidebar {
+  box-sizing: border-box;
+  width: 100%;
+    max-width: 100vw;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 12px;
+    height: auto;
+    min-height: unset;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .editor-container {
+    padding: 2px;
+    gap: 6px;
+  }
+  .canvas-section {
+    padding: 2px;
+    border-radius: 6px;
+  }
+  .sidebar {
+    padding: 2px;
+    border-radius: 6px;
+    margin-top: 6px;
+  }
+}
+
 
 /* Left column */
 .canvas-section {
@@ -204,6 +249,22 @@
   overflow-y: auto;
 }
 .palette {
+  box-sizing: border-box;
+  width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   border-radius: 6px;
   padding: 8px;
   border: 1px solid rgba(255,255,255,0.1);
