@@ -135,14 +135,13 @@ function Editor({ spriteSize=16 }) {
 
   // Dibuja los píxeles en el canvas cada vez que cambian
   React.useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    // Obtiene el tamaño del div contenedor
-    const parent = canvas.parentElement;
-    const rect = parent.getBoundingClientRect();
-    // Tamaño visual del canvas igual al contenedor
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
+  const canvas = canvasRef.current;
+  if (!canvas) return;
+  // Obtiene el tamaño del div contenedor
+  const parent = canvas.parentElement;
+  // Tamaño visual del canvas igual al contenedor
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
     // Tamaño lógico del canvas igual a spriteSize
     canvas.width = spriteSize;
     canvas.height = spriteSize;
@@ -290,13 +289,7 @@ function Editor({ spriteSize=16 }) {
   }
 
   // Traducción de nombres de herramientas y paletas
-  const toolNames = {
-    pencil: "Lápiz",
-    eraser: "Borrador",
-    eyedropper: "Cuentagotas",
-    fill: "Rellenar",
-    clearFill: "Limpiar"
-  };
+  // ...existing code...
   const paletteNames = {
     monochromatic: "Monocromática",
     complementary: "Complementaria",
@@ -355,13 +348,13 @@ function Editor({ spriteSize=16 }) {
           borderRadius: '16px',
           boxShadow: '0 2px 12px rgba(26,35,126,0.10)',
           width: '100%',
-          maxWidth: '600px',
-          aspectRatio: '1/1',
+          maxWidth: 'min(90vw, 600px)',
+          aspectRatio: '1 / 1',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           margin: '0 auto',
-          minHeight: '220px'
+          minHeight: 'min(60vw, 220px)'
         }}>
           <canvas
             ref={canvasRef}
@@ -369,7 +362,16 @@ function Editor({ spriteSize=16 }) {
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
-            style={{background: 'none', display: 'block', margin: '0 auto', width: '100%', height: '100%', aspectRatio: '1/1', maxWidth: '600px', maxHeight: '600px'}}
+            style={{
+              background: 'none',
+              display: 'block',
+              margin: '0 auto',
+              width: '100%',
+              height: '100%',
+              aspectRatio: '1 / 1',
+              maxWidth: 'min(90vw, 600px)',
+              maxHeight: 'min(90vw, 600px)'
+            }}
           />
         </div>
 
