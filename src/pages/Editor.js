@@ -118,6 +118,25 @@ function generatePalette(baseColor, type) {
   return [...new Set(palette)];
 }
 
+// Utilidad para convertir rgba a hex
+function rgbaToHex(rgba) {
+  const match = rgba.match(/rgba?\((\d+),(\d+),(\d+)(?:,(\d*\.?\d+))?\)/);
+  if (!match) return '#000000';
+  const r = parseInt(match[1]);
+  const g = parseInt(match[2]);
+  const b = parseInt(match[3]);
+  // Ignora el canal alpha para el input color
+  return (
+    '#' +
+    [r, g, b]
+      .map(x => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+      })
+      .join('')
+  );
+}
+
 function Editor({ spriteSize=16 }) {
   const [spriteName, setSpriteName] = useState("Mi Sprite");
   const [tool, setTool] = useState("pencil");
@@ -132,6 +151,7 @@ function Editor({ spriteSize=16 }) {
   const [fixedPalettesColors, setFixedPalettesColors] = useState({});
 
   const canvasRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   // Dibuja los píxeles en el canvas cada vez que cambian
   React.useEffect(() => {
@@ -204,10 +224,16 @@ function Editor({ spriteSize=16 }) {
       case "eraser":
         newPixels[y][x] = "rgba(0,0,0,0)";
         break;
-      case "eyedropper":
-        setCurrentColor(newPixels[y][x]);
-        addRecentColor(newPixels[y][x]);
+      case "eyedropper": {
+        let color = newPixels[y][x];
+        // Si el color es rgba, conviértelo a hex
+        if (color.startsWith('rgba')) {
+          color = rgbaToHex(color);
+        }
+        setCurrentColor(color);
+        addRecentColor(color);
         break;
+      }
       case "fill":
         const target = newPixels[y][x];
         const floodFill = (px, py) => {
@@ -288,8 +314,31 @@ function Editor({ spriteSize=16 }) {
     link.click();
   }
 
+  // Importar PNG y convertirlo en matriz de píxeles
+  const handleImportPNG = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const img = new window.Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = spriteSize;
+      canvas.height = spriteSize;
+      ctx.drawImage(img, 0, 0, spriteSize, spriteSize);
+      const newPixels = [];
+      for (let y = 0; y < spriteSize; y++) {
+        newPixels[y] = [];
+        for (let x = 0; x < spriteSize; x++) {
+          const { data } = ctx.getImageData(x, y, 1, 1);
+          newPixels[y][x] = `rgba(${data[0]},${data[1]},${data[2]},${data[3]/255})`;
+        }
+      }
+      setPixels(newPixels);
+    };
+    img.src = URL.createObjectURL(file);
+  };
+
   // Traducción de nombres de herramientas y paletas
-  // ...existing code...
   const paletteNames = {
     monochromatic: "Monocromática",
     complementary: "Complementaria",
@@ -312,7 +361,7 @@ function Editor({ spriteSize=16 }) {
             <label style={{fontWeight: 'bold', color: '#1c2044ff', fontSize: '1.08em', marginBottom: '8px', display: 'block'}}>Seleccionar Color</label>
             <input
               type="color"
-              value={currentColor}
+              value={currentColor.startsWith('#') ? currentColor : rgbaToHex(currentColor)}
               onChange={e=>setCurrentColor(e.target.value)}
               style={{
                 width: '56px',
@@ -322,7 +371,8 @@ function Editor({ spriteSize=16 }) {
                 boxShadow: '0 2px 8px rgba(26,35,126,0.10)',
                 cursor: 'pointer',
                 background: '#fff',
-                display: 'block'
+                display: 'block',
+                maxWidth: '120px'
               }}
             />
           </div>
@@ -385,6 +435,14 @@ function Editor({ spriteSize=16 }) {
         <div className="export-section">
           <button onClick={handleExportPNG}>Exportar PNG {spriteSize} px</button>
           <button style={{marginLeft: '12px'}} onClick={() => handleExportPNGAmpliado(16)}>Exportar PNG ampliado nítido</button>
+          <button style={{marginLeft: '12px'}} onClick={() => fileInputRef.current.click()}>Importar PNG</button>
+          <input
+            type="file"
+            accept="image/png"
+            ref={fileInputRef}
+            style={{display: 'none'}}
+            onChange={handleImportPNG}
+          />
         </div>
       </div>
 

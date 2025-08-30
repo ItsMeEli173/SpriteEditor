@@ -337,16 +337,15 @@
       width: 100%;
     }
     .tools-group {
-      flex-direction: row;
+      flex-direction: column;
       gap: 10px;
-      justify-content: center;
       width: 100%;
     }
     .tools-group button {
       min-width: 90px;
-      max-width: 160px;
+      max-width: 220px;
       width: 100%;
-      margin: 0 auto;
+      margin: 4px auto;
     }
   }
   @media (max-width: 520px) {
